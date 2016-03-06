@@ -1,4 +1,4 @@
-package com.dnst.commerce.order;
+package com.dnst.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

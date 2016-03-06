@@ -1,4 +1,4 @@
-package com.dnst.product;
+package com.dnst.beans;
 
 import com.google.gson.annotations.Expose;
 import org.apache.commons.lang3.builder.ToStringBuilder;

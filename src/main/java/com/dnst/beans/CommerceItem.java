@@ -1,6 +1,5 @@
-package com.dnst.commerce.order;
+package com.dnst.beans;
 
-import com.dnst.product.Product;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

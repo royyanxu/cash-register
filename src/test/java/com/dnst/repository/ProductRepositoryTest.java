@@ -1,6 +1,6 @@
 package com.dnst.repository;
 
-import com.dnst.product.Product;
+import com.dnst.beans.Product;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

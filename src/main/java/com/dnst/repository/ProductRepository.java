@@ -1,6 +1,6 @@
 package com.dnst.repository;
 
-import com.dnst.product.Product;
+import com.dnst.beans.Product;
 
 /**
  * @author Finley

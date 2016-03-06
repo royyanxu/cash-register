@@ -1,6 +1,8 @@
-package com.dnst.commerce.order;
+package com.dnst.order;
 
-import com.dnst.product.Product;
+import com.dnst.beans.CommerceItem;
+import com.dnst.beans.Order;
+import com.dnst.beans.Product;
 import com.dnst.repository.ProductRepository;
 import junit.framework.Assert;
 import org.junit.Before;

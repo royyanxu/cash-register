@@ -1,6 +1,6 @@
 package com.dnst.repository;
 
-import com.dnst.product.Product;
+import com.dnst.beans.Product;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
