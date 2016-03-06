@@ -14,16 +14,13 @@ import java.io.Serializable;
 public class Product implements Serializable {
 
     @Expose
-    private String name;
-
+    private String   name;
     @Expose
-    private double listPrice;
-
+    private double   listPrice;
     @Expose
     private Category category;
-
     @Expose
-    private String barCode;
+    private String   barCode;
 
 
 

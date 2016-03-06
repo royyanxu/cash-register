@@ -26,11 +26,10 @@ import java.util.Map;
 @Component
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private final Logger logger = LoggerFactory.getLogger(ProductRepositoryImpl.class);
+    private final Logger               logger       = LoggerFactory.getLogger(ProductRepositoryImpl.class);
+    private final Map<String, Product> productStore = new HashMap<>();
 
     private static final String PRODUCT_MOCK_FILE_PATH = "classpath:mockProduct.json";
-
-    private final Map<String, Product> productStore = new HashMap<>();
 
 
 
