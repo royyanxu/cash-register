@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.collections.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -24,6 +26,8 @@ import java.util.Map;
 @Component
 public class ProductRepositoryImpl implements ProductRepository {
 
+    private final Logger logger = LoggerFactory.getLogger(ProductRepositoryImpl.class);
+
     private static final String PRODUCT_MOCK_FILE_PATH = "classpath:mockProduct.json";
 
     private final Map<String, Product> productStore = new HashMap<>();
@@ -40,6 +44,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                 productStore.put(product.getBarCode(), product);
             }
         }
+        logger.debug("The initial products is {}", productStore);
     }
 
 
@@ -56,8 +61,9 @@ public class ProductRepositoryImpl implements ProductRepository {
                 result += line;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("When execute get product data error occur.", e);
         }
+        logger.debug("The product mock data result is {}", result);
         return result;
     }
 
