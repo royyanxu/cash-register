@@ -10,10 +10,9 @@ import java.io.Serializable;
  */
 public class CommerceItem implements Serializable {
 
-    private Product product;
-    private int     quantity;
-    private double  rawTotalPrice;
-    private double  totalPrice;
+    private Product       product;
+    private int           quantity;
+    private ItemPriceInfo itemPriceInfo;
 
 
 
@@ -54,44 +53,19 @@ public class CommerceItem implements Serializable {
 
 
     /**
-     * @return the rawTotalPrice
+     * @return the itemPriceInfo
      */
-    public double getRawTotalPrice() {
-        return rawTotalPrice;
+    public ItemPriceInfo getItemPriceInfo() {
+        return itemPriceInfo;
     }
 
 
 
     /**
-     * @param rawTotalPrice the rawTotalPrice
+     * @param itemPriceInfo the itemPriceInfo
      */
-    public void setRawTotalPrice(double rawTotalPrice) {
-        this.rawTotalPrice = rawTotalPrice;
-    }
-
-
-
-    /**
-     * @return the totalPrice
-     */
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-
-
-    /**
-     * @param totalPrice the totalPrice
-     */
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-
-
-    public double getDiscountAmount() {
-        double discount = getRawTotalPrice() - getTotalPrice();
-        return discount < 0d ? 0d : discount;
+    public void setItemPriceInfo(ItemPriceInfo itemPriceInfo) {
+        this.itemPriceInfo = itemPriceInfo;
     }
 
 

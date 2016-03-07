@@ -10,8 +10,7 @@ import java.util.List;
 public class Order implements Serializable {
 
     private List<CommerceItem> commerceItems = new ArrayList<>();
-    private double rawSubTotalPrice;
-    private double totalPrice;
+    private OrderPriceInfo orderPriceInfo;
 
 
 
@@ -34,43 +33,18 @@ public class Order implements Serializable {
 
 
     /**
-     * @return the rawSubTotalPrice
+     * @return the orderPriceInfo
      */
-    public double getRawSubTotalPrice() {
-        return rawSubTotalPrice;
+    public OrderPriceInfo getOrderPriceInfo() {
+        return orderPriceInfo;
     }
 
 
 
     /**
-     * @param rawSubTotalPrice the rawSubTotalPrice
+     * @param orderPriceInfo the orderPriceInfo
      */
-    public void setRawSubTotalPrice(double rawSubTotalPrice) {
-        this.rawSubTotalPrice = rawSubTotalPrice;
-    }
-
-
-
-    /**
-     * @return the totalPrice
-     */
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-
-
-    /**
-     * @param totalPrice the totalPrice
-     */
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-
-
-    public double getDiscountAmount() {
-        double discount = getRawSubTotalPrice() - getTotalPrice();
-        return discount < 0d ? 0d : discount;
+    public void setOrderPriceInfo(OrderPriceInfo orderPriceInfo) {
+        this.orderPriceInfo = orderPriceInfo;
     }
 }

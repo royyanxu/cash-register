@@ -1,14 +1,11 @@
 package com.dnst.order;
 
-import com.dnst.beans.CommerceItem;
 import com.dnst.beans.Order;
-import com.dnst.beans.Product;
-import com.dnst.repository.ProductRepository;
+import com.dnst.beans.OrderPriceInfo;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -19,9 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("/applicationContext.xml")
 public class OrderTest {
 
-    @Autowired
-    private ProductRepository productRepository;
-
     private Order order;
 
 
@@ -29,28 +23,19 @@ public class OrderTest {
     @Before
     public void constructOrder() {
         order = new Order();
-        CommerceItem commerceItem = new CommerceItem();
-        order.getCommerceItems().add(commerceItem);
-        Product product = productRepository.getProductByBarCode("ITEM000005");
-        commerceItem.setProduct(product);
-        commerceItem.setQuantity(10);
-        // pricing
-        commerceItem.setRawTotalPrice(commerceItem.getProduct().getListPrice() * commerceItem.getQuantity());
-        commerceItem.setTotalPrice(commerceItem.getRawTotalPrice() - 10.0d);
-        double rawSubTotal = 0d;
-        double totalPrice = 0d;
-        for (CommerceItem orderCommerceItem : order.getCommerceItems()) {
-            rawSubTotal += orderCommerceItem.getRawTotalPrice();
-            totalPrice += orderCommerceItem.getTotalPrice();
-        }
-        order.setRawSubTotalPrice(rawSubTotal);
-        order.setTotalPrice(totalPrice);
+        OrderPriceInfo orderPriceInfo = new OrderPriceInfo();
+        orderPriceInfo.setAmount(100.0d);
+        orderPriceInfo.setRawSubTotalPrice(110.0d);
+        order.setOrderPriceInfo(orderPriceInfo);
+        order.getOrderPriceInfo().setDiscountAmount(
+                order.getOrderPriceInfo().getRawSubTotalPrice() - order.getOrderPriceInfo().getAmount());
     }
 
 
 
     @Test
     public void testOrder() {
-        Assert.assertEquals("Discount amount should same as pre define value.", 10.0d, order.getDiscountAmount());
+        Assert.assertEquals("Discount amount should same as pre define value.", 10.0d,
+                order.getOrderPriceInfo().getDiscountAmount());
     }
 }
