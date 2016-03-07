@@ -1,5 +1,10 @@
 [
   {
+    "name": "羽毛球",
+    "listPrice": "1.00",
+    "barCode": "ITEM000001"
+  },
+  {
     "name": "可口可乐",
     "listPrice": "3.00",
     "barCode": "ITEM000005"

@@ -1,7 +1,5 @@
-package com.dnst.order;
+package com.dnst.beans;
 
-import com.dnst.beans.Order;
-import com.dnst.beans.OrderPriceInfo;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;

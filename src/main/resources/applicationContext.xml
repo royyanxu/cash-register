@@ -8,4 +8,5 @@
                            http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:component-scan base-package="com.dnst.repository"/>
+    <context:component-scan base-package="com.dnst.service"/>
 </beans>

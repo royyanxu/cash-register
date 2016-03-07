@@ -1,5 +1,8 @@
 package com.dnst.beans;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +49,12 @@ public class Order implements Serializable {
      */
     public void setOrderPriceInfo(OrderPriceInfo orderPriceInfo) {
         this.orderPriceInfo = orderPriceInfo;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }
