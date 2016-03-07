@@ -1,0 +1,8 @@
+***<没钱赚商店>购物清单***
+#foreach ($commerceItem in $order.commerceItems)
+名称：$commerceItem.product.name，数量：$commerceItem.quantity，单价：$commerceItem.product.listPrice，小计：${commerceItem.itemPriceInfo.rawTotalPrice} #if($commerceItem.itemPriceInfo.discounted)#end
+#end
+
+----------------------
+总计：${order.orderPriceInfo.amount}(元)
+**********************
