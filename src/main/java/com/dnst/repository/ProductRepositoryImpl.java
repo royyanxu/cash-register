@@ -35,7 +35,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @PostConstruct
     private void loadProducts() {
-        final Gson gson = new GsonBuilder().create();
+        final Gson gson = new Gson();
         final List<Product> products = gson.fromJson(getProductMockData(), new TypeToken<List<Product>>() {
         }.getType());
         if (CollectionUtils.isNotEmpty(products)) {

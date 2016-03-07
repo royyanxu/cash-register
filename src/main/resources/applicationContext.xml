@@ -9,4 +9,6 @@
 
     <context:component-scan base-package="com.dnst.repository"/>
     <context:component-scan base-package="com.dnst.service"/>
+    <context:component-scan base-package="com.dnst.command"/>
+    <context:component-scan base-package="com.dnst.controller"/>
 </beans>
