@@ -1,8 +1,10 @@
 package com.dnst.service;
 
 import com.dnst.beans.CommerceItem;
+import com.dnst.beans.DisplayPromotionItem;
 import com.dnst.beans.Order;
-import com.dnst.beans.OrderPriceInfo;
+import com.dnst.beans.Promotion;
+import com.dnst.beans.PromotionalType;
 import com.dnst.utils.BarCodeUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
@@ -57,8 +59,25 @@ public class OrderServiceImpl implements OrderService {
             addCommerceItemToOrder(order, commerceItem);
         }
         getPricingService().calculateOrderPriceInfo(order);
+        constructOrderShowPromotion(order);
         logger.debug("The created order is {}", order);
         return order;
+    }
+
+
+
+    private void constructOrderShowPromotion(Order order) {
+        for (CommerceItem commerceItem : order.getCommerceItems()) {
+            for (Promotion promotion : commerceItem.getAppliedPromotions()) {
+                if (promotion.getPromotionalType().equals(PromotionalType.BUY_X_SUB_Y)) {
+                    DisplayPromotionItem displayPromotionItem = new DisplayPromotionItem();
+                    displayPromotionItem.setCommerceItem(commerceItem);
+                    displayPromotionItem.setPromotion(promotion);
+                    order.getDisplayPromotionItems().add(displayPromotionItem);
+                    break;
+                }
+            }
+        }
     }
 
 

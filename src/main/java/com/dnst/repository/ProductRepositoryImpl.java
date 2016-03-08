@@ -2,7 +2,6 @@ package com.dnst.repository;
 
 import com.dnst.beans.Product;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
@@ -10,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
@@ -23,7 +22,7 @@ import java.util.Map;
 /**
  * @author Finley
  */
-@Component
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
     private final Logger               logger       = LoggerFactory.getLogger(ProductRepositoryImpl.class);

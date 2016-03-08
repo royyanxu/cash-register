@@ -2,12 +2,19 @@
 #foreach ($commerceItem in $order.commerceItems)
 名称：$commerceItem.product.name, 数量：${commerceItem.quantity}${commerceItem.product.unit}, 单价：${numberTool.format("#0.00",${commerceItem.product.listPrice})}(元),##
 #if($commerceItem.itemPriceInfo.discounted)
-小计：${numberTool.format("#0.00",${commerceItem.itemPriceInfo.rawTotalPrice})}(元),节省${numberTool.format("#0.00",${commerceItem.itemPriceInfo.discountAmount})}(元)
+小计：${numberTool.format("#0.00",${commerceItem.itemPriceInfo.amount})}(元),节省${numberTool.format("#0.00",${commerceItem.itemPriceInfo.discountAmount})}(元)
 #else
-小计：${numberTool.format("#0.00",${commerceItem.itemPriceInfo.rawTotalPrice})}(元)
+小计：${numberTool.format("#0.00",${commerceItem.itemPriceInfo.amount})}(元)
 #end
 #end
 ----------------------
+#if (${order.orderShowPromotion.size()} != 0)
+买二赠一商品：
+#foreach ($displayPromotionItem in $order.displayPromotionItems)
+名称：$displayPromotionItem.commerceItem.product.name，数量：${displayPromotionItem.commerceItem.discountQuantity}${displayPromotionItem.commerceItem.product.unit}
+#end
+----------------------
+#end
 总计：${numberTool.format("#0.00", $order.orderPriceInfo.amount)}(元)
 #if
 ($order.orderPriceInfo.discounted)节省：${numberTool.format("#0.00",$order.orderPriceInfo.discountAmount)}(元)

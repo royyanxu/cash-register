@@ -14,6 +14,7 @@ public class Order implements Serializable {
 
     private List<CommerceItem> commerceItems = new ArrayList<>();
     private OrderPriceInfo orderPriceInfo;
+    private List<DisplayPromotionItem> displayPromotionItems = new ArrayList<>();
 
 
 
@@ -49,6 +50,24 @@ public class Order implements Serializable {
      */
     public void setOrderPriceInfo(OrderPriceInfo orderPriceInfo) {
         this.orderPriceInfo = orderPriceInfo;
+    }
+
+
+
+    /**
+     * @return the displayPromotionItems
+     */
+    public List<DisplayPromotionItem> getDisplayPromotionItems() {
+        return displayPromotionItems;
+    }
+
+
+
+    /**
+     * @param pDisplayPromotionItems the displayPromotionItems
+     */
+    public void setDisplayPromotionItems(List<DisplayPromotionItem> pDisplayPromotionItems) {
+        displayPromotionItems = pDisplayPromotionItems;
     }
 
 

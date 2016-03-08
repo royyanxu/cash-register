@@ -1,0 +1,15 @@
+[
+  {
+    "promotionId" : "prom001",
+    "promotionalType" : "buyXSubY",
+    "buyXSubY" : [2,1],
+    "applyTo" : ["ITEM000005","ITEM000001"],
+    "mutexType" : "discount"
+  },
+  {
+    "promotionId" : "prom002",
+    "promotionalType" : "discount",
+    "discountRate" : "0.95",
+    "applyTo" : ["ITEM000005","ITEM000003"]
+  }
+]

@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Finley
@@ -12,7 +14,9 @@ public class CommerceItem implements Serializable {
 
     private Product       product;
     private int           quantity;
+    private int           discountQuantity;
     private ItemPriceInfo itemPriceInfo;
+    private List<Promotion> appliedPromotions = new ArrayList<>();
 
 
 
@@ -53,6 +57,24 @@ public class CommerceItem implements Serializable {
 
 
     /**
+     * @return the discountQuantity
+     */
+    public int getDiscountQuantity() {
+        return discountQuantity;
+    }
+
+
+
+    /**
+     * @param pDiscountQuantity the discountQuantity
+     */
+    public void setDiscountQuantity(int pDiscountQuantity) {
+        discountQuantity = pDiscountQuantity;
+    }
+
+
+
+    /**
      * @return the itemPriceInfo
      */
     public ItemPriceInfo getItemPriceInfo() {
@@ -66,6 +88,24 @@ public class CommerceItem implements Serializable {
      */
     public void setItemPriceInfo(ItemPriceInfo itemPriceInfo) {
         this.itemPriceInfo = itemPriceInfo;
+    }
+
+
+
+    /**
+     * @return the appliedPromotions
+     */
+    public List<Promotion> getAppliedPromotions() {
+        return appliedPromotions;
+    }
+
+
+
+    /**
+     * @param pAppliedPromotions the appliedPromotions
+     */
+    public void setAppliedPromotions(List<Promotion> pAppliedPromotions) {
+        appliedPromotions = pAppliedPromotions;
     }
 
 

@@ -6,6 +6,7 @@ import com.dnst.beans.Order;
 import com.dnst.beans.OrderPriceInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,6 +16,9 @@ import java.math.BigDecimal;
  */
 @Service
 public class PricingServiceImpl implements PricingService {
+
+    @Autowired
+    private PromotionService promotionService;
 
     private final Logger logger = LoggerFactory.getLogger(PricingServiceImpl.class);
 
@@ -30,14 +34,9 @@ public class PricingServiceImpl implements PricingService {
         commerceItem.setItemPriceInfo(itemPriceInfo);
         itemPriceInfo.setListPrice(commerceItem.getProduct().getListPrice());
         final double rawTotalPrice = commerceItem.getQuantity() * itemPriceInfo.getListPrice();
-        final double amount = rawTotalPrice;
-        final double discountAmount = rawTotalPrice - amount;
-        if (discountAmount > 0) {
-            itemPriceInfo.setDiscounted(true);
-        }
         itemPriceInfo.setRawTotalPrice(rawTotalPrice);
-        itemPriceInfo.setAmount(amount);
-        itemPriceInfo.setDiscountAmount(discountAmount);
+        itemPriceInfo.setAmount(rawTotalPrice);
+        getPromotionService().calculateItemPromotionalPriceInfo(commerceItem);
         logger.debug("Calculate the item price info {} for product {}", itemPriceInfo, commerceItem.getProduct());
     }
 
@@ -61,14 +60,32 @@ public class PricingServiceImpl implements PricingService {
             rawSubTotal += commerceItem.getItemPriceInfo().getRawTotalPrice();
             amount += commerceItem.getItemPriceInfo().getAmount();
         }
+        orderPriceInfo.setRawSubTotalPrice(rawSubTotal);
+        orderPriceInfo.setAmount(amount);
         double discountAmount = orderPriceInfo.getRawSubTotalPrice() - orderPriceInfo.getAmount();
         if (discountAmount > 0) {
             orderPriceInfo.setDiscounted(true);
         }
-        orderPriceInfo.setRawSubTotalPrice(rawSubTotal);
-        orderPriceInfo.setAmount(amount);
         orderPriceInfo.setDiscountAmount(discountAmount);
         order.setOrderPriceInfo(orderPriceInfo);
         logger.debug("Calculate the order price info {}", orderPriceInfo);
+    }
+
+
+
+    /**
+     * @return the promotionService
+     */
+    public PromotionService getPromotionService() {
+        return promotionService;
+    }
+
+
+
+    /**
+     * @param pPromotionService the promotionService
+     */
+    public void setPromotionService(PromotionService pPromotionService) {
+        promotionService = pPromotionService;
     }
 }

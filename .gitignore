@@ -2,3 +2,4 @@
 *.iml
 target/
 velocity.log*
+cash_register.log

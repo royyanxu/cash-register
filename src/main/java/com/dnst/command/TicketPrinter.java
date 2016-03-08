@@ -15,7 +15,7 @@ public class TicketPrinter {
             "applicationContext.xml");
 
 
-    private static final String test1 = "['ITEM000001','ITEM000001',ITEM000001,ITEM000001,ITEM000001,'ITEM000003-2','ITEM000005','ITEM000005','ITEM000005']";
+    private static final String test1 = "['ITEM000001','ITEM000001','ITEM000001','ITEM000001','ITEM000001','ITEM000003-2','ITEM000005','ITEM000005','ITEM000005']";
 
 
     public static void main(String[] args) {
