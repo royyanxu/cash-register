@@ -9,8 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * @author finleyfeng
- * @version 1.0, 3/7/2016
+ * @author Finley
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
@@ -27,6 +26,7 @@ public class CommerceItemServiceTest {
         Assert.assertEquals("Quantity should same as assigned", 5, commerceItem.getQuantity());
         Assert.assertEquals("Related product's bar code should same as assigned", "ITEM000005",
                 commerceItem.getProduct().getBarCode());
+        Assert.assertNotNull("Should create the price info object", commerceItem.getItemPriceInfo());
     }
 
 

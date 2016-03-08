@@ -1,8 +1,15 @@
 ***<没钱赚商店>购物清单***
 #foreach ($commerceItem in $order.commerceItems)
-名称：$commerceItem.product.name，数量：$commerceItem.quantity，单价：$commerceItem.product.listPrice，小计：${commerceItem.itemPriceInfo.rawTotalPrice} #if($commerceItem.itemPriceInfo.discounted)#end
+名称：$commerceItem.product.name, 数量：${commerceItem.quantity}${commerceItem.product.unit}, 单价：${numberTool.format("#0.00",${commerceItem.product.listPrice})}(元),##
+#if($commerceItem.itemPriceInfo.discounted)
+小计：${numberTool.format("#0.00",${commerceItem.itemPriceInfo.rawTotalPrice})}(元),节省${numberTool.format("#0.00",${commerceItem.itemPriceInfo.discountAmount})}(元)
+#else
+小计：${numberTool.format("#0.00",${commerceItem.itemPriceInfo.rawTotalPrice})}(元)
 #end
-
+#end
 ----------------------
-总计：${order.orderPriceInfo.amount}(元)
+总计：${numberTool.format("#0.00", $order.orderPriceInfo.amount)}(元)
+#if
+($order.orderPriceInfo.discounted)节省：${numberTool.format("#0.00",$order.orderPriceInfo.discountAmount)}(元)
+#end
 **********************

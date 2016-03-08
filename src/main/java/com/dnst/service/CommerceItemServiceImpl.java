@@ -18,6 +18,8 @@ public class CommerceItemServiceImpl implements CommerceItemService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private PricingService    pricingService;
 
     private final Logger logger = LoggerFactory.getLogger(CommerceItemServiceImpl.class);
 
@@ -36,11 +38,9 @@ public class CommerceItemServiceImpl implements CommerceItemService {
             throw new IllegalArgumentException("Cannot find product by barCode");
         }
         final CommerceItem commerceItem = new CommerceItem();
-        final ItemPriceInfo itemPriceInfo = new ItemPriceInfo();
         commerceItem.setQuantity(quantity);
         commerceItem.setProduct(product);
-        itemPriceInfo.setListPrice(product.getListPrice());
-        commerceItem.setItemPriceInfo(itemPriceInfo);
+        getPricingService().calculateItemPriceInfo(commerceItem);
         return commerceItem;
     }
 
@@ -60,5 +60,23 @@ public class CommerceItemServiceImpl implements CommerceItemService {
      */
     public void setProductRepository(ProductRepository pProductRepository) {
         productRepository = pProductRepository;
+    }
+
+
+
+    /**
+     * @return the pricingService
+     */
+    public PricingService getPricingService() {
+        return pricingService;
+    }
+
+
+
+    /**
+     * @param pPricingService the pricingService
+     */
+    public void setPricingService(PricingService pPricingService) {
+        pricingService = pPricingService;
     }
 }

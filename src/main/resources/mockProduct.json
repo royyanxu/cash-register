@@ -2,16 +2,19 @@
   {
     "name": "可口可乐",
     "listPrice": "3.00",
-    "barCode": "ITEM000005"
+    "barCode": "ITEM000005",
+    "unit" : "瓶"
   },
   {
     "name": "羽毛球",
     "listPrice": "1.00",
-    "barCode": "ITEM000001"
+    "barCode": "ITEM000001",
+    "unit" : "个"
   },
   {
     "name": "苹果",
     "listPrice": "5.50",
-    "barCode": "ITEM000003"
+    "barCode" : "ITEM000003",
+    "unit" : "斤"
   }
 ]

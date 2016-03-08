@@ -32,5 +32,11 @@ public interface OrderService {
 
 
 
+    /**
+     * Add the commerce item to the param order.
+     *
+     * @param order        order.
+     * @param commerceItem commerce item.
+     */
     void addCommerceItemToOrder(Order order, CommerceItem commerceItem);
 }

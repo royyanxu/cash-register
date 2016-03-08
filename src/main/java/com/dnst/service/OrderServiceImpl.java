@@ -22,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private CommerceItemService commerceItemService;
+    @Autowired
+    private PricingService      pricingService;
 
     private final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
@@ -30,8 +32,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder() {
         final Order order = new Order();
-        final OrderPriceInfo orderPriceInfo = new OrderPriceInfo();
-        order.setOrderPriceInfo(orderPriceInfo);
         logger.debug("Execute the create order method, the create order info is {}", order);
         return order;
     }
@@ -52,10 +52,11 @@ public class OrderServiceImpl implements OrderService {
         }
         logger.debug("Constructed product info map value is {}", productInfoMap);
         for (Map.Entry<String, Integer> productInfo : productInfoMap.entrySet()) {
-            CommerceItem commerceItem = commerceItemService
+            CommerceItem commerceItem = getCommerceItemService()
                     .createCommerceItem(productInfo.getKey(), productInfo.getValue());
             addCommerceItemToOrder(order, commerceItem);
         }
+        getPricingService().calculateOrderPriceInfo(order);
         logger.debug("The created order is {}", order);
         return order;
     }
@@ -86,5 +87,41 @@ public class OrderServiceImpl implements OrderService {
         } else {
             productInfoMap.put(barCode, originalQuantity + quantity);
         }
+    }
+
+
+
+    /**
+     * @return the commerceItemService
+     */
+    public CommerceItemService getCommerceItemService() {
+        return commerceItemService;
+    }
+
+
+
+    /**
+     * @param pCommerceItemService the commerceItemService
+     */
+    public void setCommerceItemService(CommerceItemService pCommerceItemService) {
+        commerceItemService = pCommerceItemService;
+    }
+
+
+
+    /**
+     * @return the pricingService
+     */
+    public PricingService getPricingService() {
+        return pricingService;
+    }
+
+
+
+    /**
+     * @param pPricingService the pricingService
+     */
+    public void setPricingService(PricingService pPricingService) {
+        pricingService = pPricingService;
     }
 }

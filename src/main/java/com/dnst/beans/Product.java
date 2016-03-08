@@ -21,6 +21,8 @@ public class Product implements Serializable {
     private Category category;
     @Expose
     private String   barCode;
+    @Expose
+    private String   unit;
 
 
 
@@ -92,6 +94,24 @@ public class Product implements Serializable {
      */
     public void setBarCode(String barCode) {
         this.barCode = barCode;
+    }
+
+
+
+    /**
+     * @return the unit
+     */
+    public String getUnit() {
+        return unit;
+    }
+
+
+
+    /**
+     * @param pUnit the unit
+     */
+    public void setUnit(String pUnit) {
+        unit = pUnit;
     }
 
 
